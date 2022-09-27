@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package br.senac.telas;
+import java.sql.*;
+import br.senac.conexaoBD.Conexao;
 
 /**
  *
@@ -11,11 +13,23 @@ package br.senac.telas;
  */
 public class frm_login extends javax.swing.JFrame {
 
+    Connection conexao = null;
+    PreparedStatement ps = null;//prepara a Consulta
+    ResultSet rs = null; // Recebe o Resultado
     /**
      * Creates new form frm_login
      */
     public frm_login() {
         initComponents();
+        conexao = Conexao.Conector();
+        
+        if (conexao !=null) {
+            lblStatus.setText("Conectado!");
+            
+        } else {
+            lblStatus.setText("Erro de Conexão");
+        }
+        
     }
 
     /**
@@ -35,6 +49,7 @@ public class frm_login extends javax.swing.JFrame {
         Btnlogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/br/senac/icones/logo.png")) .getImage());
@@ -57,11 +72,13 @@ public class frm_login extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senac/icones/logo.png"))); // NOI18N
 
+        lblStatus.setText("Status");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -81,7 +98,10 @@ public class frm_login extends javax.swing.JFrame {
                             .addComponent(Txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                             .addComponent(Txtsenha)
                             .addComponent(Btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(142, 142, 142))))
+                        .addGap(142, 142, 142))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblStatus)
+                        .addGap(168, 168, 168))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +123,9 @@ public class frm_login extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(Btnlogin)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblStatus)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,5 +191,6 @@ public class frm_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

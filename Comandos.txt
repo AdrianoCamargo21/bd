@@ -1,0 +1,34 @@
+create database senac;
+
+use senac;
+## restrição para não existe 2 logins identicos (unique)
+create table usuarios(
+id_usuario int primary key auto_increment,
+nome_usuario varchar(100) not null,
+telefone varchar(15),
+login varchar(15) not null unique,
+senha varchar(15) not null
+);
+
+describe usuarios;
+
+insert into usuarios(nome_usuario,telefone,login,senha) values ('Adriano','4999110-5036','adriano','123');
+
+
+create table contatos(
+id_contato int primary key auto_increment,
+nome_contato varchar(100) not null,
+telefone_contato varchar(15) not null,
+email_contato varchar(50),
+sexo  varchar(15),
+endereco  varchar(100),
+bairro  varchar(50),
+cidade  varchar(100),
+cep  varchar(10),
+uf varchar(2)
+);
+
+describe contatos;
+
+insert into contatos(nome_contato,telefone_contato,email_contato,sexo,endereco,bairro,cidade,cep,uf) values
+('Adriano Dos Sanros','49991105056','adriano@grupoviabrasil.net.br','Masculino','Dinarte Jose Rodrigues','Martello','Cacador','89510806','SC');
